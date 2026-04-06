@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Champion</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main class="container adminchamp-layout">
+      <section class="card adminchamp-hero">
+        <h1>Admin Champion Dashboard</h1>
+        <p class="muted" id="authStatusNotice">กำลังตรวจสอบสถานะผู้ดูแล...</p>
+      </section>
+
+      <section class="adminchamp-col adminchamp-col-left">
+        <section class="card adminchamp-section" id="test-manager">
+          <div class="section-head">
+            <h2>สร้างบททดสอบ</h2>
+            <span class="section-note">Quick Create</span>
+          </div>
+          <p class="muted">สร้างบททดสอบใหม่อย่างรวดเร็วจากหน้า Template</p>
+
+          <a class="adminchamp-cta" href="template.html">
+            <strong>+ สร้างบททดสอบใหม่</strong>
+            <span>ไปหน้า Template เพื่อสร้างคอร์ส/บททดสอบใหม่ หรือแก้ไขคลังข้อสอบเดิม</span>
+          </a>
+
+          <div class="subsection-head">
+            <h3>คลังบททดสอบทั้งหมด</h3>
+            <button class="btn btn-secondary btn-compact" type="button" id="openFeedbackEditorBtn">แก้คำอวยพร/แซวผลคะแนน</button>
+          </div>
+
+
+
+          <div class="subsection-head">
+            <h3>คลังคำเกมใครต่างจากเพื่อน</h3>
+          </div>
+          <p class="muted">1 บรรทัด = 4 คำ คั่นด้วยเครื่องหมาย | โดยคำที่ 4 ต้องเป็นคำต่าง</p>
+          <textarea id="logicSpyWordSetsInput" rows="8" placeholder="แมว|เสือ|สิงโต|หมี"></textarea>
+          <div class="admin-actions">
+            <button class="btn btn-secondary" type="button" id="saveLogicSpyWordSetsBtn">บันทึกคลังคำเกม</button>
+          </div>
+          <p class="muted" id="logicSpyWordSetsStatus">กำลังโหลดคลังคำ...</p>
+
+          <div class="quiz-library" id="quizLibrary">
+            <p class="muted">กำลังโหลดบททดสอบ...</p>
+          </div>
+        </section>
+
+        <section class="card adminchamp-section" id="profile-manager">
+          <div class="section-head">
+            <h2>แก้ไขโปรไฟล์</h2>
+            <span class="section-note">Profile</span>
+          </div>
+          <p class="muted">หน้านี้ใช้จัดการข้อมูลโปรไฟล์ทั้งหมด เมื่อบันทึกเสร็จสามารถเปิดหน้าโปรไฟล์เพื่อตรวจสอบได้ทันที</p>
+
+          <form id="profileForm" class="stack-form">
+            <label>ชื่อที่แสดง
+              <input type="text" id="profileNameInput" placeholder="เช่น ออย" required />
+            </label>
+            <label>ลิงก์รูปโปรไฟล์
+              <input type="url" id="profileImageInput" placeholder="https://..." required />
+            </label>
+            <div class="muted" id="profileImagePreviewStatus">ยังไม่ได้ใส่ลิงก์รูปโปรไฟล์</div>
+            <label>ข้อความแนะนำครู (ถ้ามี)
+              <textarea id="profileBioInput" rows="3" placeholder="ข้อความแนะนำที่ต้องการให้แสดงบนหน้าโปรไฟล์"></textarea>
+            </label>
+            <label>ลิงก์รูปการสอน (ถ้ามี, 1 บรรทัดต่อ 1 ลิงก์)
+              <textarea id="profileTeachingImagesInput" rows="4" placeholder="https://...\nhttps://..."></textarea>
+            </label>
+            <div class="admin-actions">
+              <button class="btn" id="saveProfileBtn" type="submit">บันทึกโปรไฟล์</button>
+              <a class="btn btn-secondary" id="openProfilePageBtn" href="profile.html" target="_blank" rel="noopener noreferrer">เปิดหน้าโปรไฟล์</a>
+            </div>
+            <p class="muted" id="profileFormStatus">กำลังโหลดข้อมูลโปรไฟล์...</p>
+          </form>
+        </section>
+      </section>
+
+      <section class="adminchamp-col adminchamp-col-right">
+        <section class="card adminchamp-section" id="course-destination">
+          <div class="section-head">
+            <h2>คอร์สที่เปิดสอน</h2>
+            <span class="section-note">Active Courses</span>
+          </div>
+          <p class="muted">จัดการคอร์สแบบเรียบง่าย: ระบุชื่อคอร์ส รายละเอียดวันเรียน เนื้อหา ราคา และเปิด/ปิดรับสมัคร พร้อมดู/ลบรายชื่อผู้สนใจ</p>
+
+          <form id="courseOfferForm" class="stack-form course-offer-form">
+            <label>ชื่อคอร์ส
+              <input type="text" id="offerTitleInput" placeholder="เช่น คณิตฯ พื้นฐาน ม.ต้น" required />
+            </label>
+            <label>รายละเอียดวันเรียน
+              <textarea id="offerScheduleDetailsInput" rows="2" placeholder="เช่น เรียนทุกวันเสาร์ 09:00-11:00 (ฉันจะเขียนเอง)" required></textarea>
+            </label>
+            <label>ราคา
+              <input type="text" id="offerPriceInput" placeholder="เช่น 2,500 บาท/คอร์ส" required />
+            </label>
+            <label>เนื้อหา
+              <textarea id="offerContentInput" rows="3" placeholder="สรุปหัวข้อที่จะสอนในคอร์สนี้"></textarea>
+            </label>
+            <div class="admin-actions">
+              <button class="btn" id="saveCourseOfferBtn" type="submit">เพิ่มคอร์ส</button>
+            </div>
+            <p class="muted" id="courseOfferStatus">กำลังโหลดรายการคอร์ส...</p>
+          </form>
+
+          <div class="course-list scroll-list" id="courseOfferList" aria-label="รายการคอร์สที่เปิดสอน">
+            <p class="muted">กำลังโหลดคอร์ส...</p>
+          </div>
+        </section>
+
+        <section class="card adminchamp-section" id="after-exam-destination">
+          <div class="section-head">
+            <h2>รายการส่งข้อสอบล่าสุด</h2>
+            <span class="section-note">Activity</span>
+          </div>
+          <p class="muted">ยังไม่มีข้อมูลกิจกรรมล่าสุดจากการใช้งานจริง</p>
+
+          <div class="destination-actions">
+            <button class="btn destination-btn" type="button" id="openMyProfileBtn">ไปโปรไฟล์ของฉัน</button>
+            <button class="btn btn-secondary destination-btn" type="button" id="openCourseDestinationBtn">ไปดูคอร์สที่เปิด / สมัครคอร์สใหม่</button>
+          </div>
+        </section>
+      </section>
+
+      <div class="modal-backdrop hidden" id="feedbackModal" role="dialog" aria-modal="true" aria-labelledby="feedbackModalTitle">
+        <section class="card feedback-modal-card">
+          <div class="section-head">
+            <h2 id="feedbackModalTitle">แก้ข้อความผลคะแนน (0-100)</h2>
+            <button class="btn btn-secondary btn-compact" type="button" id="closeFeedbackModalBtn">ปิด</button>
+          </div>
+          <p class="muted">1 บรรทัด = 1 ประโยค แนะนำใส่เครื่องหมาย "..." เพื่อแยกประโยคให้อ่านง่าย ระบบจะสุ่มเลือกแค่ 1 ประโยคต่อครั้ง</p>
+          <div class="feedback-grid" id="feedbackGrid"></div>
+          <div class="admin-actions">
+            <button class="btn" type="button" id="saveFeedbackBtn">บันทึกข้อความผลคะแนน</button>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="js/adminchamp.js"></script>
+    <a class="home-fab" href="index.html" aria-label="กลับหน้าแรก">🏠</a>
+  </body>
+</html>
